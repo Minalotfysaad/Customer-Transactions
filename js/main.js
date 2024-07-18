@@ -150,10 +150,10 @@ $(document).ready(function () {
     });
 
     $("#searchAmount").on("input", function () {
-        const searchAmount = $(this).val().trim();
+        const searchAmount = parseInt($(this).val(), 10);
         filterTable(null, searchAmount);
     });
-
+    
     function filterTable(name, amount) {
         filteredTransactions = transactions.filter((transaction) => {
             const customer = customers.find(
@@ -162,14 +162,13 @@ $(document).ready(function () {
             if (customer) {
                 const nameMatch =
                     !name || customer.name.toLowerCase().includes(name);
-                const amountMatch =
-                    !amount || transaction.amount.toString().includes(amount); // Check if transaction amount includes the input amount
+                const amountMatch = !amount || transaction.amount == amount;
                 return nameMatch && amountMatch;
             }
             return false;
         });
-
-        displayTable();
+    
+        displayTable(); // Display filtered results
     }
 
     // Display modal when row is clicked

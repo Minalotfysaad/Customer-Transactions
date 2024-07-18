@@ -39,7 +39,11 @@ i {
 #customerTable tbody tr:hover {
     cursor: pointer;
 }
-
+@media (max-width: 768px) {
+    table{
+        text-align: center;
+    }
+}
 /* Loader */
 .loader {
     width: 48px;
